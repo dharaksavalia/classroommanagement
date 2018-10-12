@@ -1,7 +1,7 @@
 function UserServiceClient() {
     this.createUser = createUser;
     this.findAllUsers = findAllUsers;
-    // this.findUserById = findUserById;
+    this.findUserById = findUserById;
     this.deleteUser = deleteUser;
     // this.updateUser = updateUser;
     this.url =
@@ -28,6 +28,10 @@ function UserServiceClient() {
                 'content-type':'application/json'
             }
         });
+    }
+    function findUserById(userId){
+        return fetch(self.url+'/'+userId)
+            .then(response=>response.json());
     }
 }
 //this has funny behaviour what context, original instant of class we use this

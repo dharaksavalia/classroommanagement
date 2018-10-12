@@ -1,6 +1,7 @@
 package com.example.myapp.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +23,10 @@ public class UserService {
 	public List<User> findAllUsers(){
 		return (List<User>)repository.findAll(); 
 	}
-	
+	@GetMapping("/api/user/{userId}")
+	public Optional<User> findAUser(@PathVariable("userId") int userId){
+		return repository.findById(userId); 
+	}
 	@PostMapping("/api/user")
 	public User createUser(@RequestBody User user) {
 		return repository.save(user);
