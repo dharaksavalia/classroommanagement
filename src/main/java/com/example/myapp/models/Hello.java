@@ -22,5 +22,5 @@ public class Hello {
 	public void setMessage(String msg)	
 	{
 		this.message = msg; 
-		}
+}
 }
