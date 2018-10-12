@@ -2,14 +2,14 @@
 
 (function hello(){
     var tbody;
-    var tr;
-    var trl;
+    var template;
+    var clone;
     var userService = new UserServiceClient();
     jQuery(main);
     function main(){
     var h1 = jQuery('h1');
         tbody= $('tbody');
-        tr= $('.template');
+        template= $('.template');
         $('#createUser').click(createUser);
         findAllUsers();
     }
@@ -19,14 +19,29 @@
                 .then(users=>renderUsers(users));
     }
     function renderUsers(users){
+        tbody.empty();
         console.log("console.log");
         for(var i=0;i<users.length;i++){
             var user=users[i];
-            tr1 = tr.clone();
-            tr1.find('.username').html(user.username);
+            clone = template.clone();
+            clone.attr('id',user.id);
+            clone.find('.delete').click(deleteUser)
+            clone.find('.username')
+                .html(user.username);
             console.log(user);
-            tbody.append(tr1);
+            tbody.append(clone);
         }
+    }
+    function deleteUser(event){
+        console.log(event);
+        var deleteBtn = $(event.currentTarget);
+        var userId = deleteBtn
+            .parent()
+            .parent()
+            .attr('id');
+        userService.deleteUser(userId)
+            .then(findAllUsers);
+
     }
     function createUser() {
         console.log('create user');
