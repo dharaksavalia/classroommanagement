@@ -42,9 +42,11 @@ public class UserService {
 				if( user.getUsername().equals(credentials.getUsername())
 						   && user.getPassword().equals(credentials.getPassword())) {
 						    session.setAttribute("currentUser", user);
+						    System.out.println("user added");
 						    return user;
 						  }
 			}
+			System.out.println("user added");
 			return null;
 	}
 	@PostMapping("/api/logout")

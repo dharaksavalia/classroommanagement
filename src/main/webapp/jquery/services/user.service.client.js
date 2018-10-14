@@ -4,7 +4,7 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
-    this.login =login;
+    this.login = login;
     this.url =
         'http://localhost:8080/api/user';
     this.login=
@@ -56,7 +56,7 @@ function UserServiceClient() {
             headers:{
                 'content-type':'application/json'
             }
-        })
+        }).then(response=>response.json());
     }
 }
 //this has funny behaviour what context, original instant of class we use this
