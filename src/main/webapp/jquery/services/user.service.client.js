@@ -7,7 +7,7 @@ function UserServiceClient() {
     this.login = login;
     this.url =
         'http://localhost:8080/api/user';
-    this.login=
+    this.loginUrl=
         'http://localhost:8080/api/login';
     var self = this;
     function createUser(user){
@@ -47,8 +47,8 @@ function UserServiceClient() {
         }).then(response=>response.json());
     }
     function login(username,password) {
-        return fetch(self.login,{
-            method:post,
+        return fetch(self.loginUrl,{
+            method:'post',
             body:JSON.stringify({
                 username:username,
                 password:password
