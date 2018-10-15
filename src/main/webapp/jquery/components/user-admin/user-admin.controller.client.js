@@ -19,7 +19,7 @@
                 .then(users=>renderUsers(users));
     }
     function renderUsers(users){
-        tbody.empty();
+        return;
         console.log("console.log");
         for(var i=0;i<users.length;i++){
             var user=users[i];
