@@ -17,7 +17,7 @@ function UserServiceClient() {
             headers:{
                 'content-type':'application/json'
             }
-        });
+        }).then(response=>response.json());
     }
     function findAllUsers(){
         console.log("find the users");

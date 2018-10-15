@@ -12,7 +12,7 @@
     function main(){
         $tbody= $('.wbdv-tbody');
         $userRowTemplate= $('.wbdv-user');
-        $('#createUser').click(createUser);
+        $('.wbdv-create').click(createUser);
         findAllUsers();
     }
     function findUserById()
@@ -69,14 +69,16 @@
         console.log('create user');
         var username =$('#usernameFld').val();
         var password =$('#passwordFld').val();
-        var firstName =$('#firstNameFldFld').val();
-        var lastName =$('#lastNameFldFld').val();
-        var user = {
-            username: username,
-            password: password,
+        var firstName =$('#firstNameFld').val();
+        var lastName =$('#lastNameFld').val();
+        var role=$('#roleFld').val();
+        var user={
+            username:username,
+            password:password,
             firstName:firstName,
-            lastName:lastName
-        };
+            lastName:lastName,
+            role:role
+        }
         userService
             .createUser(user)
             .then(findAllUsers());

@@ -16,6 +16,7 @@ public class User {
 	private String username;
 	private String password;
 	private String firstName;
+	private String lastName;
 	private String phone;
 	private String email;
 	private String role;
@@ -74,5 +75,5 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	private String lastName;
+	
 }
