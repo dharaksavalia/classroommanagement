@@ -27,7 +27,9 @@
     {
 
     }
+    function selectUser() {
 
+    }
 
     function findAllUsers(){
 
