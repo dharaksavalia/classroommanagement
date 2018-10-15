@@ -42,7 +42,7 @@
         for(var i=0;i<users.length;i++){
             var user=users[i];
             $clone = $userRowTemplate.clone();
-            $clone.attr('id',user.id);
+            $clone.find('.wbdv-remove').attr('id',user.id);
             $clone.find('.delete').click(deleteUser)
             $clone.find('.wbdv-username')
                 .html(user.username);
@@ -52,18 +52,16 @@
                 .html(user.lastName);
             $clone.find('.wbdv-role')
                 .html(user.role);
+            $clone.find('.wbdv-remove').click(deleteUser);
             console.log(user);
             $tbody.append($clone);
         }
     }
     function deleteUser(event){
         console.log(event);
-        var deleteBtn = $(event.currentTarget);
-        var userId = deleteBtn
-            .parent()
-            .parent()
-            .attr('id');
-        userService.deleteUser(userId)
+        var $deleteBtn = $(event.currentTarget);
+        userService
+            .deleteUser($deleteBtn.attr("id"))
             .then(findAllUsers);
 
     }
