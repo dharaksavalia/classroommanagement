@@ -6,14 +6,14 @@
     var $firstNameFld, $lastNameFld;
     var $userRowTemplate, $tbody;
     var userService = new UserServiceClient();
-
+    var $clone;
+    var userModel;
     jQuery(main);
     function main(){
-    var h1 = jQuery('h1');
-        $tbody= $('tbody');
-        template= $('.template');
+        $tbody= $('.wbdv-tbody');
+        $userRowTemplate= $('.wbdv-user');
         $('#createUser').click(createUser);
-      //  findAllUsers();
+        findAllUsers();
     }
     function findUserById()
     {
@@ -37,16 +37,23 @@
                 .then(users=>renderUsers(users));
     }
     function renderUsers(users){
-        console.log("console.log");
+        $tbody.empty();
+        console.log(users);
         for(var i=0;i<users.length;i++){
             var user=users[i];
-            clone = template.clone();
-            clone.attr('id',user.id);
-            clone.find('.delete').click(deleteUser)
-            clone.find('.username')
+            $clone = $userRowTemplate.clone();
+            $clone.attr('id',user.id);
+            $clone.find('.delete').click(deleteUser)
+            $clone.find('.wbdv-username')
                 .html(user.username);
+            $clone.find('.wbdv-first-name')
+                .html(user.firstName);
+            $clone.find('.wbdv-last-name')
+                .html(user.lastName);
+            $clone.find('.wbdv-role')
+                .html(user.role);
             console.log(user);
-            tbody.append(clone);
+            $tbody.append($clone);
         }
     }
     function deleteUser(event){
