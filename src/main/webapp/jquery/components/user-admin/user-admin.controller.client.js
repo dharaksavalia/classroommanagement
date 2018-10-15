@@ -1,25 +1,40 @@
 //IIFE
 
 (function hello(){
-    var tbody;
-    var template;
-    var clone;
+    var $usernameFld, $passwordFld;
+    var $removeBtn, $editBtn, $createBtn;
+    var $firstNameFld, $lastNameFld;
+    var $userRowTemplate, $tbody;
     var userService = new UserServiceClient();
+
     jQuery(main);
     function main(){
     var h1 = jQuery('h1');
-        tbody= $('tbody');
+        $tbody= $('tbody');
         template= $('.template');
         $('#createUser').click(createUser);
-        findAllUsers();
+      //  findAllUsers();
     }
+    function findUserById()
+    {
+
+    }
+    function updateUser()
+    {
+
+    }
+    function renderUser(user)
+    {
+
+    }
+
+
     function findAllUsers(){
 
             userService.findAllUsers()
                 .then(users=>renderUsers(users));
     }
     function renderUsers(users){
-        return;
         console.log("console.log");
         for(var i=0;i<users.length;i++){
             var user=users[i];
