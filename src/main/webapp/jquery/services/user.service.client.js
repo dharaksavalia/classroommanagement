@@ -11,6 +11,9 @@ function UserServiceClient() {
         'http://localhost:8080/api/login';
     var self = this;
     function createUser(user){
+        /*
+        *
+         */
         return fetch(self.url,{
             method: 'post',
             body:JSON.stringify(user),
@@ -20,6 +23,10 @@ function UserServiceClient() {
         }).then(response=>response.json());
     }
     function findAllUsers(){
+        /*
+        *
+        *
+         */
         console.log("find the users");
         return fetch(self.url)
             .then(response=>response.json());

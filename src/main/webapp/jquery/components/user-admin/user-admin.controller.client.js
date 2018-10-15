@@ -1,7 +1,7 @@
 //IIFE
 
 (function hello(){
-    var $usernameFld, $passwordFld;
+    var $usernameFld, $passwordFld, $roleFld;
     var $removeBtn, $editBtn, $createBtn;
     var $firstNameFld, $lastNameFld;
     var $userRowTemplate, $tbody;
@@ -13,6 +13,11 @@
         $tbody= $('.wbdv-tbody');
         $userRowTemplate= $('.wbdv-user');
         $('.wbdv-create').click(createUser);
+        $usernameFld=$('#usernameFld');
+        $lastNameFld=$('#lastNameFld');
+        $passwordFld=$('#passwordFld');
+        $firstNameFld=$('#firstNameFld')
+        $roleFld=$('#roleFld');
         findAllUsers();
     }
     function findUserById()
@@ -30,12 +35,17 @@
     function selectUser() {
 
     }
-
+    /*
+    *called whenever the list of users needs to be refreshed
+    *Uses user service findAllUsers() to retrieve all the users and passes response to renderUsers
+     */
     function findAllUsers(){
-
             userService.findAllUsers()
                 .then(users=>renderUsers(users));
     }
+    /*
+    *accepts a user object as parameter and updates the form with the user properties
+     */
     function renderUsers(users){
         $tbody.empty();
         console.log(users);
@@ -63,21 +73,17 @@
         userService
             .deleteUser($deleteBtn.attr("id"))
             .then(findAllUsers);
-
     }
     function createUser() {
         console.log('create user');
-        var username =$('#usernameFld').val();
-        var password =$('#passwordFld').val();
-        var firstName =$('#firstNameFld').val();
-        var lastName =$('#lastNameFld').val();
-        var role=$('#roleFld').val();
+        console.log(new User($usernameFld.val(),$passwordFld.val(),
+            $firstNameFld.val(), $lastNameFld.val(), $roleFld.val()));
         var user={
-            username:username,
-            password:password,
-            firstName:firstName,
-            lastName:lastName,
-            role:role
+            username:$usernameFld.val(),
+            password:$passwordFld.val(),
+            firstName:$firstNameFld.val(),
+            lastName:$lastNameFld.val(),
+            role:$roleFld.val()
         }
         userService
             .createUser(user)
