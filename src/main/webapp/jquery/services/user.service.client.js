@@ -5,16 +5,15 @@ function UserServiceClient() {
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
     this.login = login;
+    this.register=register;
     this.url =
-        'http://localhost:8080/api/user';
-    this.loginUrl=
-        'http://localhost:8080/api/login';
+        'http://localhost:8080/api';
     var self = this;
     function createUser(user){
         /*
         *
          */
-        return fetch(self.url,{
+        return fetch(self.url+'/user',{
             method: 'post',
             body:JSON.stringify(user),
             headers:{
@@ -28,11 +27,11 @@ function UserServiceClient() {
         *
          */
         console.log("find the users");
-        return fetch(self.url)
+        return fetch(self.url+'/user')
             .then(response=>response.json());
     }
     function deleteUser(userId){
-        return fetch(self.url +'/' + userId ,{
+        return fetch(self.url+'/user'+'/' + userId ,{
             method: 'delete',
             headers:{
                 'content-type':'application/json'
@@ -40,12 +39,12 @@ function UserServiceClient() {
         });
     }
     function findUserById(userId){
-        return fetch(self.url+'/'+userId)
+        return fetch(self.url+'/user'+'/'+userId)
             .then(response=>response.json());
     }
     function updateUser(userId,user){
         //console.log("upateUser");
-        return fetch(self.url+'/'+userId,{
+        return fetch(self.url+'/user'+'/'+userId,{
             method:'put',
             body:JSON.stringify(user),
             headers:{
@@ -54,7 +53,7 @@ function UserServiceClient() {
         }).then(response=>response.json());
     }
     function login(username,password) {
-        return fetch(self.loginUrl,{
+        return fetch(self.url+'/login',{
             method:'post',
             body:JSON.stringify({
                 username:username,
@@ -64,6 +63,16 @@ function UserServiceClient() {
                 'content-type':'application/json'
             }
         }).then(response=>response.json());
+    }
+    function register(user) {
+        return fetch(
+            self.url+'/register',{
+                body:JSON.stringify(user),
+                headers:{
+                    'content-type':'application/json'
+                }
+            }
+        ).then(response=>response.json());
     }
 }
 //this has funny behaviour what context, original instant of class we use this
