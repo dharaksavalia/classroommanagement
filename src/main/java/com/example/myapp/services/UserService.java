@@ -28,7 +28,7 @@ public class UserService {
 		return (List<User>)repository.findAll(); 
 	}
 	@GetMapping("/api/user/{userId}")
-	public Optional<User> findAUser(@PathVariable("userId") int userId){
+	public Optional<User> findUserById(@PathVariable("userId") int userId){
 		return repository.findById(userId); 
 	}
 	@PostMapping("/api/user")
