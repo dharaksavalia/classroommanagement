@@ -17,7 +17,7 @@
         $messageFld.hide();
         $dateOfBirthFld=$("#dateOfBirth");
         $updateBtn=$('#updateBtn')
-            .click(updateUser);
+            .click(updateProfile);
     }
     function renderUser(user){
         console.log(user);
@@ -27,7 +27,7 @@
         $dateOfBirthFld.val(user.dateOfBirth);
         $roleFld.val(user.role);
     }
-    function updateUser(){
+    function updateProfile(){
         var user = {
             username:$usernameFld.val(),
             phone: $phoneFld.val(),
@@ -37,7 +37,7 @@
         }
         console.log(user);
         userService
-            .updateUser(user)
+            .updateProfile(user)
             .then(success)
             .catch(fail);
     }

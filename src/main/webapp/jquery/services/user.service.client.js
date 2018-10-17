@@ -8,6 +8,7 @@ function UserServiceClient() {
     this.register=register;
     this.searchUsers=searchUsers;
     this.getProfile=getProfile;
+    this.updateProfile=updateProfile;
     this.url =
         'http://localhost:8080/api';
     var self = this;
@@ -28,10 +29,6 @@ function UserServiceClient() {
             .then(response=>response.json());
     }
     function findAllUsers(){
-        /*
-        *
-        *
-         */
         console.log("find the users");
         return fetch(self.url+'/user')
             .then(response=>response.json());
@@ -48,9 +45,19 @@ function UserServiceClient() {
         return fetch(self.url+'/user'+'/'+userId)
             .then(response=>response.json());
     }
-    function updateUser(user){
+    function updateProfile(user){
         //console.log("upateUser");
         return fetch(self.url+'/profile',{
+            method:'put',
+            body:JSON.stringify(user),
+            headers:{
+                'content-type':'application/json'
+            }
+        }).then(response=>response.json());
+    }
+    function updateUser(userId,user){
+        //console.log("upateUser");
+        return fetch(self.url+'/user'+'/'+userId,{
             method:'put',
             body:JSON.stringify(user),
             headers:{
