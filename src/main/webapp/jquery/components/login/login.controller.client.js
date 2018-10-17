@@ -9,10 +9,10 @@
         $usernameFld=$('#username');
         $passwordFld=$('#password');
         $loginBtn=$('#login')
-            .click(loginC);
+            .click(register);
 
     }
-    function loginC() {
+    function register() {
         console.log($usernameFld.val()+$passwordFld.val());
         userService
             .login($usernameFld.val(),$passwordFld.val())

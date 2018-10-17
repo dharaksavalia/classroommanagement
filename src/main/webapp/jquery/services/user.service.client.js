@@ -69,6 +69,7 @@ function UserServiceClient() {
         return fetch(
             self.url+'/register',{
                 body:JSON.stringify(user),
+                method:'post',
                 headers:{
                     'content-type':'application/json'
                 }

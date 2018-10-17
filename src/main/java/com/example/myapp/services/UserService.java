@@ -57,8 +57,12 @@ public class UserService {
 		return repository.save(user);
 	}
 	@PostMapping("/api/register")
-	public User register(@RequestBody User user, HttpSession session) {
-		return repository.save(user);
+	public ResponseEntity<User> register(@RequestBody User user, HttpSession session) {
+		for(User databaseUsers:repository.findUserByUsername(user.getUsername())) {
+			session.setAttribute("currentUser", user);
+			return new ResponseEntity(null,HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity(repository.save(user),HttpStatus.OK);
 	}
 	@PostMapping("/api/login")
 	public User login(@RequestBody User credentials,HttpSession session) {
@@ -67,7 +71,7 @@ public class UserService {
 				if( user.getUsername().equals(credentials.getUsername())
 						   && user.getPassword().equals(credentials.getPassword())) {
 						    session.setAttribute("currentUser", user);
-						    System.out.println("user added");
+						    //System.out.println("user added");
 						    return user;
 						  }
 			}
