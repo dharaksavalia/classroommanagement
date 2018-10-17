@@ -27,35 +27,59 @@
     <h1>Profile</h1>
     <form>
         <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Username</label>
+                    <label for="message" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="message">
+                    </div>
+            </div>
+        <div class="form-group row">
+            <label for="staticUsername" class="col-sm-2 col-form-label">Username</label>
             <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="username">
+                <input type="text" readonly class="form-control-plaintext" id="staticUsername">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+            <label for="phone" class="col-sm-2 col-form-label">Phone</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                <input type="number" class="form-control" id="phone" placeholder="(000)000-0000">
             </div>
         </div>
         <div class="form-group row">
-            <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="firstName" placeholder="First name">
+                <input type="email" class="form-control" id="email" placeholder="First name">
             </div>
         </div>
         <div class="form-group row">
-            <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+                <label for="roleFld" class="col-sm-2 col-form-label">Role</label>
+                <div class="col-sm-10">
+                        <select id="roleFld" class="form-control">
+                                <option value="FACULTY">Faculty</option>
+                                <option value="STUDENT">Student</option>
+                                <option value="ADMIN">Admin</option>
+                            </select>
+                </div>
+            </div>
+        <div class="form-group row">
+            <label for="lastName" class="col-sm-2 col-form-label">Date of Birth</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="lastName" placeholder="Last name">
+                <input type="date" class="form-control" id="dateOfBirth" placeholder="mm/dd/yyyy">
             </div>
         </div>
         <div class="form-group row">
+            <div class="col-sm-2"></div>
             <button
-                    id= "updateButton"
-                    class="btn btn-primary btn-block"
+                    id= "updateBtn"
+                    class="btn btn-primary col-sm-10"
                     type ="button">Update</button>
         </div>
+        <div class="form-group row">
+        <div class="col-sm-2"></div>
+                <button
+                        id= "logoutBtn"
+                        class="btn btn-danger col-sm-10" 
+                        type ="button">Logout</button>
+                </div>
     </form>
 </div><!-- Profile div end-->
 

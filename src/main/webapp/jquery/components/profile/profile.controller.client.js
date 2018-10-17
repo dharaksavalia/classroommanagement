@@ -1,6 +1,6 @@
 (function(){
     $(init);
-    var $staticEmail;
+    var $username;
     var $firstName;
     var $lastName;
     var $updateButton;
@@ -9,7 +9,7 @@
         userService
             .findUserById(31)//change it self id
             .then(renderUser);
-        $staticEmail =$("#staticEmail");
+        $username =$("#staticUsername");
         $firstName=$("#firstName");
         $lastName=$("#lastName");
         $updateButton=$('#updateButton')
