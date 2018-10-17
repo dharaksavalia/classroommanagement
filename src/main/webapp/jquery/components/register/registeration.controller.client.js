@@ -1,5 +1,6 @@
 (function () {
     var $usernameFld, $passwordFld, $verifyPasswordFld;
+    var $redirectBtn;
     var $registerBtn;
     var userService = new UserServiceClient();
     $(main);
@@ -10,6 +11,8 @@
         $verifyPasswordFld=$('#verifyPasswordFld');
         $registerBtn=$('#registerBtn');
         $registerBtn.click(register);
+        $redirectBtn=('.webdev-login-redirect');
+        $redirectBtn.click(redirectToLogin);
 
     }
     function register() {
@@ -27,10 +30,12 @@
     }
     function success(){
         alert("user registered");
-        window.location.href = '../profile/profile.template.client.html';
+        redirectToLogin();
     }
     function fail(message){
-
         alert(message);
+    }
+    function redirectToLogin(){
+        window.location.href = '../login/login.template.client.html';
     }
 })();

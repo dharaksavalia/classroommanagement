@@ -59,23 +59,22 @@ public class UserService {
 	@PostMapping("/api/register")
 	public ResponseEntity<User> register(@RequestBody User user, HttpSession session) {
 		for(User databaseUsers:repository.findUserByUsername(user.getUsername())) {
-			session.setAttribute("currentUser", user);
 			return new ResponseEntity(null,HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity(repository.save(user),HttpStatus.OK);
 	}
 	@PostMapping("/api/login")
-	public User login(@RequestBody User credentials,HttpSession session) {
+	public ResponseEntity<User> login(@RequestBody User credentials,HttpSession session) {
 			List<User> users =(List<User>)repository.findUserByCredentials(credentials.getUsername(), credentials.getPassword());
 			for(User user:users) {
 				if( user.getUsername().equals(credentials.getUsername())
 						   && user.getPassword().equals(credentials.getPassword())) {
 						    session.setAttribute("currentUser", user);
 						    //System.out.println("user added");
-						    return user;
+						    return new ResponseEntity(user,HttpStatus.OK);
 						  }
 			}
-			System.out.println("user added");
+			//System.out.println("user added");
 			return null;
 	}
 	@PostMapping("/api/logout")

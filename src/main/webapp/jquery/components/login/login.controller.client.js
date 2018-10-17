@@ -9,16 +9,23 @@
         $usernameFld=$('#username');
         $passwordFld=$('#password');
         $loginBtn=$('#login')
-            .click(register);
+            .click(login);
 
     }
-    function register() {
-        console.log($usernameFld.val()+$passwordFld.val());
+    function login() {
         userService
             .login($usernameFld.val(),$passwordFld.val())
-            .then(success);
+            .then(success)
+            .catch(fail);
     }
     function success() {
         alert("login successful");
+        redirectProfile();
+    }
+    function fail(){
+        alert("username or password doesnot match");
+    }
+    function redirectProfile(){
+        window.location.href = '../profile/profile.template.client.html';
     }
 })();
