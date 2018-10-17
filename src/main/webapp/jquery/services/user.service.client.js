@@ -6,6 +6,7 @@ function UserServiceClient() {
     this.updateUser = updateUser;
     this.login = login;
     this.register=register;
+    this.searchUsers=searchUsers;
     this.url =
         'http://localhost:8080/api';
     var self = this;
@@ -74,5 +75,13 @@ function UserServiceClient() {
             }
         ).then(response=>response.json());
     }
+    function searchUsers(user) {
+        return fetch(self.url+'/user?'+createQuery(user))
+            .then(response=>response.json());
+    }
+    function createQuery(object) {
+        return $.param(object);
+    }
+
 }
 //this has funny behaviour what context, original instant of class we use this

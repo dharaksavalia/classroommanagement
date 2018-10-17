@@ -15,7 +15,7 @@ function User(username, password, firstName, lastName,role) {
     this.getlastName= getLastName;
     this.setRole=setRole;
     this.getRole=getRole;
-    this.toString=toString;
+    //this.toString=toString;
     function setRole(role) {
         self.role=role;
     }
@@ -49,7 +49,6 @@ function User(username, password, firstName, lastName,role) {
     function setRole(role) {
         self.role=role;
     }
-
 
 
 }
