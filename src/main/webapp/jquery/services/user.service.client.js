@@ -10,8 +10,7 @@ function UserServiceClient() {
     this.searchUsers=searchUsers;
     this.getProfile=getProfile;
     this.updateProfile=updateProfile;
-    this.url =
-        'http://localhost:8080/api';
+    this.url =window.location.origin+'/api';
     var self = this;
     function createUser(user){
         /*
