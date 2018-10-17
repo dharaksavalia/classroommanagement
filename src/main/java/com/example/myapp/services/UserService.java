@@ -77,6 +77,7 @@ public class UserService {
 			//System.out.println("user added");
 			return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
 	}
+	
 	@PostMapping("/api/logout")
 	public void logout
 	(HttpSession session) {

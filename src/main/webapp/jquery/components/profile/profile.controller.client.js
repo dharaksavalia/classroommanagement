@@ -2,7 +2,7 @@
     $(init);
     var $usernameFld,$messageFld,$phoneFld;
     var $emailFld,$roleFld,$dateOfBirthFld;
-    var $updateBtn;
+    var $updateBtn,$logoutBtn;
     var userService = new UserServiceClient();
     function init() {
         userService
@@ -18,6 +18,16 @@
         $dateOfBirthFld=$("#dateOfBirth");
         $updateBtn=$('#updateBtn')
             .click(updateProfile);
+        $logoutBtn=$('#logoutBtn')
+            .click(logout);
+
+    }
+    function logout(){
+        userService.logout()
+        .then(response=>{
+            alert("logut sucessfull");
+            window.location.href = '../login/login.template.client.html';
+        })
     }
     function renderUser(user){
         console.log(user);
@@ -41,6 +51,7 @@
             .then(success)
             .catch(fail);
     }
+
     function success() {
         $messageFld.show();
         $messageFld.val("Profile Updated");

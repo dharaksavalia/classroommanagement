@@ -5,6 +5,7 @@ function UserServiceClient() {
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
     this.login = login;
+    this.logout=logout;
     this.register=register;
     this.searchUsers=searchUsers;
     this.getProfile=getProfile;
@@ -94,6 +95,9 @@ function UserServiceClient() {
     }
     function createQuery(object) {
         return $.param(object);
+    }
+    function logout(){
+        return fetch(self.url+'/logout');
     }
 
 }
