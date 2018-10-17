@@ -75,7 +75,7 @@ public class UserService {
 						  }
 			}
 			//System.out.println("user added");
-			return null;
+			return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
 	}
 	@PostMapping("/api/logout")
 	public void logout
@@ -83,9 +83,19 @@ public class UserService {
 		session.invalidate();
 	}
 	@GetMapping("/api/profile")
-	public User profile(HttpSession session) {
-	User currentUser = (User)session.getAttribute("currentUser");	
-	return currentUser;
+	public ResponseEntity<User> profile(HttpSession session) {
+	User currentUser = (User)session.getAttribute("currentUser");
+	if(currentUser==null||currentUser.getUsername()==null) return new ResponseEntity(HttpStatus.NO_CONTENT);
+	return new ResponseEntity(currentUser,HttpStatus.OK);
+	}
+	@PutMapping("/api/profile")
+	public ResponseEntity<User> updateProfile(@RequestBody User updateUser,HttpSession session) {
+	User currentUser = (User)session.getAttribute("currentUser");
+	if(currentUser==null||currentUser.getUsername()==null) return new ResponseEntity(HttpStatus.NO_CONTENT);
+	currentUser=updateUser(currentUser,updateUser);
+	session.setAttribute("currentUser",currentUser);
+	currentUser=repository.save(currentUser);
+	return new ResponseEntity(currentUser,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/api/user/{userId}")

@@ -1,38 +1,51 @@
 (function(){
     $(init);
-    var $username;
-    var $firstName;
-    var $lastName;
-    var $updateButton;
+    var $usernameFld,$messageFld,$phoneFld;
+    var $emailFld,$roleFld,$dateOfBirthFld;
+    var $updateBtn;
     var userService = new UserServiceClient();
     function init() {
         userService
-            .findUserById(31)//change it self id
-            .then(renderUser);
-        $username =$("#staticUsername");
-        $firstName=$("#firstName");
-        $lastName=$("#lastName");
-        $updateButton=$('#updateButton')
+            .getProfile()//change it self id
+            .then(renderUser)
+            .catch(fail);
+        $phoneFld=$("#phoneFld");
+        $usernameFld=$('#staticUsername');
+        $messageFld=$('#messageFld');
+        $emailFld=$("#emailFld");
+        $roleFld=$("#roleFld");
+        $messageFld.hide();
+        $dateOfBirthFld=$("#dateOfBirth");
+        $updateBtn=$('#updateBtn')
             .click(updateUser);
-
-
     }
     function renderUser(user){
         console.log(user);
-        $staticEmail.val(user.username);
-        $firstName.val(user.firstName);
-        $lastName.val(user.lastName);
+        $usernameFld.val(user.username);
+        $phoneFld.val(user.phone);
+        $emailFld.val(user.email);
+        $dateOfBirthFld.val(user.dateOfBirth);
+        $roleFld.val(user.role);
     }
     function updateUser(){
         var user = {
-            firstName: $firstName.val(),
-            lastName: $lastName.val()
+            username:$usernameFld.val(),
+            phone: $phoneFld.val(),
+            email: $emailFld.val(),
+            dateOfBirth:$dateOfBirthFld.val(),
+            role:$roleFld.val(),
         }
+        console.log(user);
         userService
-            .updateUser(31,user)
-            .then(success);
+            .updateUser(user)
+            .then(success)
+            .catch(fail);
     }
     function success() {
-        alert("update success full");
+        $messageFld.show();
+        $messageFld.val("Profile Updated");
+    }
+    function fail(){
+        alert("failed");
     }
 })();
