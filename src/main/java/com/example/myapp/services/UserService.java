@@ -24,7 +24,7 @@ import com.example.myapp.repositories.UserRepository;
  */
 
 import com.example.myapp.models.User;
-//@CrossOrigin
+@CrossOrigin
 @RestController
 public class UserService {
 	
