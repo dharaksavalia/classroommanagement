@@ -19,6 +19,8 @@ public class HelloService {
 	
 	@GetMapping("/api/hello")
 	public Iterable<Hello> findAllHellos() {
+		
+		
 		return repository.findAll();
 	}
 	
