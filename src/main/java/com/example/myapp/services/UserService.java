@@ -42,7 +42,7 @@ public class UserService {
 			return new ResponseEntity(repository.findAll(),HttpStatus.OK);
 		else
 			 return new ResponseEntity(repository.findUserByFirstNameOrLastNameOrRole
-					(firstName, lastName, role),HttpStatus.OK);
+					(firstName,lastName,role),HttpStatus.OK);
 	}
 	
 	@GetMapping("/api/user/{userId}")
