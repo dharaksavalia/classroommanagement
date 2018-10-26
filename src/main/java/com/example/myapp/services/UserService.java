@@ -36,9 +36,11 @@ public class UserService {
 		String role=customQuery.getOrDefault("role",null);
 		String firstName=customQuery.getOrDefault("firstName",null);
 		String lastName=customQuery.getOrDefault("lastName",null);
+		
 		if(username!=null)
 			return new ResponseEntity(repository.findUserByUsername(username),HttpStatus.OK);
-		if(role==null && firstName==null && firstName==null)
+		
+		if(role==null && lastName==null && firstName==null)
 			return new ResponseEntity(repository.findAll(),HttpStatus.OK);
 		else
 			 return new ResponseEntity(repository.findUserByFirstNameOrLastNameOrRole
