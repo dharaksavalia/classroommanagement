@@ -1,11 +1,13 @@
 package com.example.myapp.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +35,16 @@ public class ModuleService {
 			newModule.setCourse(course);
 			return new ResponseEntity<>(moduleRepository.save(newModule),HttpStatus.OK);
 		}
-		return new ResponseEntity<>(newModule,HttpStatus.OK);
+		return new ResponseEntity<>(newModule,HttpStatus.BAD_REQUEST);
+	}
+	@GetMapping("/api/course/{courseId}/module")
+	public ResponseEntity<List<Module>> getModules(@PathVariable("courseId") int courseId) {
+		Optional<Course> data = courseRepository.findById(courseId);
+		if(data.isPresent()) {
+			Course course = data.get();
+			return new ResponseEntity<>(course.getModules(),HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null,HttpStatus.BAD_GATEWAY);
 	}
 
 
