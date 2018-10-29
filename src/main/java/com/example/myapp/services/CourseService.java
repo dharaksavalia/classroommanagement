@@ -38,10 +38,11 @@ public class CourseService {
 		return new ResponseEntity(courseRepository.save(course)
 				,HttpStatus.OK);
 	}
-	@DeleteMapping("api/course/{courseId}")
+	@DeleteMapping("/api/course/{courseId}")
 	public ResponseEntity<Course> deleteCourse(@PathVariable("courseId") int courseId){
 		Optional<Course> data=courseRepository.findById(courseId);
 		if(data.isPresent()) {
+			System.out.println(data);
 			courseRepository.delete(data.get());
 			return new ResponseEntity(data.get(),HttpStatus.OK);
 		}
