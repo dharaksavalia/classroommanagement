@@ -46,6 +46,7 @@ public class UserService {
 			 return new ResponseEntity(repository.findUserByFirstNameOrLastNameOrRole
 					(firstName,lastName,role),HttpStatus.OK);
 	}
+	@
 	
 	@GetMapping("/api/user/{userId}")
 	public ResponseEntity<User> findUserById(@PathVariable("userId") int userId){		
@@ -81,9 +82,19 @@ public class UserService {
 			//System.out.println("user added");
 			return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
 	}
-	
+	@GetMapping("/api/user/{username}/username")
+	public ResponseEntity<Boolean> checkUserNameAvaliability(@PathVariable("username")String username)
+	/*
+	 * Return true if username is available or false if not
+	 * 
+	 */
+	{
+		for(User user:repository.findUserByUsername(username)) 
+			return new ResponseEntity(false,HttpStatus.NOT_ACCEPTABLE);
+		return new ResponseEntity(true,HttpStatus.OK);
+	}
 	@PostMapping("/api/logout")
-	public void logout
+ 	public void logout
 	(HttpSession session) {
 		session.invalidate();
 	}
@@ -101,6 +112,10 @@ public class UserService {
 	session.setAttribute("currentUser",currentUser);
 	currentUser=repository.save(currentUser);
 	return new ResponseEntity(currentUser,HttpStatus.OK);
+	}
+	
+	public ResponseEntity<Boolean> isUserNameAvaliable(@P){
+		
 	}
 	
 	@DeleteMapping("/api/user/{userId}")
