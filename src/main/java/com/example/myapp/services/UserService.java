@@ -46,7 +46,7 @@ public class UserService {
 			 return new ResponseEntity(repository.findUserByFirstNameOrLastNameOrRole
 					(firstName,lastName,role),HttpStatus.OK);
 	}
-	@
+	
 	
 	@GetMapping("/api/user/{userId}")
 	public ResponseEntity<User> findUserById(@PathVariable("userId") int userId){		
@@ -114,9 +114,6 @@ public class UserService {
 	return new ResponseEntity(currentUser,HttpStatus.OK);
 	}
 	
-	public ResponseEntity<Boolean> isUserNameAvaliable(@P){
-		
-	}
 	
 	@DeleteMapping("/api/user/{userId}")
 	public void deleteUser(@PathVariable("userId") int userId) {
