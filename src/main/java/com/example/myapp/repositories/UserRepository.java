@@ -1,5 +1,7 @@
 package com.example.myapp.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -13,7 +15,7 @@ public interface UserRepository extends CrudRepository< User, Integer> {
 				@Param("username")String username,
 				@Param("password")String password);
 	@Query("SELECT u FROM User as u WHERE u.username=:username")
-	Iterable<User>findUserByUsername(
+	List<User>findUserByUsername(
 				@Param("username")String username);
 	@Query("SELECT u FROM User as u WHERE u.firstName LIKE %:firstName% "
 			+ "OR u.lastName LIKE %:lastName% OR u.role=:role" )

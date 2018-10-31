@@ -82,17 +82,21 @@ public class UserService {
 			//System.out.println("user added");
 			return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
 	}
+	
 	@GetMapping("/api/user/{username}/username")
-	public ResponseEntity<Boolean> checkUserNameAvaliability(@PathVariable("username")String username)
+	public User checkUserNameAvaliability(@PathVariable("username")String username)
 	/*
 	 * Return true if username is available or false if not
 	 * 
 	 */
 	{
-		for(User user:repository.findUserByUsername(username)) 
-			return new ResponseEntity(false,HttpStatus.NOT_ACCEPTABLE);
-		return new ResponseEntity(true,HttpStatus.OK);
+		List<User> userList = repository.findUserByUsername(username);
+		if(userList != null && userList.size() > 0) {
+			return userList.get(0);
+		}
+		return null;
 	}
+	
 	@PostMapping("/api/logout")
  	public void logout
 	(HttpSession session) {
