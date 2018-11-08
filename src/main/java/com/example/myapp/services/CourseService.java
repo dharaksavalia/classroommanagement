@@ -41,12 +41,17 @@ public class CourseService {
 	@DeleteMapping("/api/course/{courseId}")
 	public ResponseEntity<Course> deleteCourse(@PathVariable("courseId") int courseId){
 		Optional<Course> data=courseRepository.findById(courseId);
+		System.out.println(data);
 		if(data.isPresent()) {
 			System.out.println(data);
 			courseRepository.delete(data.get());
 			return new ResponseEntity(data.get(),HttpStatus.OK);
 		}
 		return new ResponseEntity(null,HttpStatus.NO_CONTENT);
+	}
+	@GetMapping("/api/course/{courseId}")
+	public Optional<Course> getCourse(@PathVariable("courseId") int courseId) {
+		return courseRepository.findById(courseId);
 	}
 
 }
