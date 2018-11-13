@@ -1,7 +1,6 @@
 package com.example.myapp.services;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,6 +47,39 @@ public class LessonService {
 		}
 		return new ResponseEntity<Lesson>(lesson,HttpStatus.NOT_FOUND);
 		
+	}
+	@DeleteMapping("/api/lesson/{lId}")
+	public ResponseEntity deleteLesson(@PathVariable("lId")int lId){
+		Optional<Lesson> data = lessonRepository.findById(lId);
+		if(data.isPresent()) {
+			return new ResponseEntity(HttpStatus.OK);
+		}
+		return new ResponseEntity<Lesson>(HttpStatus.NOT_FOUND);
+		
+	}
+	@GetMapping("/api/lesson/{lId}")
+	public ResponseEntity<Lesson> getALesson(@PathVariable("lId")int lId){
+		Optional<Lesson> data = lessonRepository.findById(lId);
+		if(data.isPresent()) {
+			return new ResponseEntity<Lesson>(data.get(),HttpStatus.OK);
+		}
+		return new ResponseEntity (null,HttpStatus.NO_CONTENT);
+		
+	}
+	@PutMapping("/api/lesson/{lId}")
+	public ResponseEntity<Lesson> updateLesson(@PathVariable("lId")int lId, @RequestBody Lesson newLesson){
+		Optional<Lesson> data = lessonRepository.findById(lId);
+		if(data.isPresent()) {
+			return new ResponseEntity<Lesson>(lessonRepository.save(myUpdateLesson(data.get(),
+					newLesson
+					)),HttpStatus.OK);
+		}
+		return new ResponseEntity (null,HttpStatus.NO_CONTENT);
+		
+	}
+	private Lesson myUpdateLesson(Lesson oldLesson,Lesson newLesson) {
+		oldLesson.setTitle(newLesson.getTitle());
+		return oldLesson;
 	}
 	
 
