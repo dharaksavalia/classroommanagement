@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,7 +21,7 @@ public class Module {
 	@ManyToOne
 	@JsonIgnore
 	private Course course;
-	@ManyToOne
+	@OneToMany
 	@JsonIgnore
 	private List<Lesson>lessons;
 	public int getId() {
