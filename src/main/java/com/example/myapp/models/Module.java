@@ -39,6 +39,12 @@ public class Module {
 	public Course getCourse() {
 		return course;
 	}
+	public List<Lesson> getLessons() {
+		return lessons;
+	}
+	public void setLessons(List<Lesson> lessons) {
+		this.lessons = lessons;
+	}
 	public void setCourse(Course course) {
 		this.course = course;
 	}
