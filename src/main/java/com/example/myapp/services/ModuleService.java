@@ -52,4 +52,13 @@ public class ModuleService {
 	{
 		moduleRepository.deleteById(moduleId);
 	}
+	@GetMapping("/api/module/{mId}")
+	public ResponseEntity<Module> getModulesById(@PathVariable("mId") int mId) {
+		Optional<Module> data = moduleRepository.findById(mId);
+		if(data.isPresent()) {
+			Module module = data.get();
+			return new ResponseEntity<>(module,HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null,HttpStatus.BAD_GATEWAY);
+	}
 }

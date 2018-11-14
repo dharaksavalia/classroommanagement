@@ -21,7 +21,7 @@ public class Module {
 	@ManyToOne
 	@JsonIgnore
 	private Course course;
-	@OneToMany
+	@OneToMany(mappedBy="module")
 	@JsonIgnore
 	private List<Lesson>lessons;
 	public int getId() {

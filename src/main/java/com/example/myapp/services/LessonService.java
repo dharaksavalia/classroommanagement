@@ -31,6 +31,7 @@ public class LessonService {
 	public ResponseEntity<List<Lesson>> getLesson(@PathVariable("mId") int mId){
 		Optional<Module> data = moduleRepository.findById(mId);
 		if(data.isPresent()) {
+			System.out.println("module"+data.get().getLessons());
 			Module module=data.get();
 			return new ResponseEntity(module.getLessons(),HttpStatus.OK);
 		}
