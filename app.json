@@ -1,0 +1,36 @@
+{
+  "name": "classroommanagement",
+  "description": "pipeline infrastructure create",
+  "scripts": {
+  },
+  "env": {
+    "CLEARDB_DATABASE_URL": {
+      "required": true
+    },
+    "DBHOSTNAME": {
+      "required": true
+    },
+    "DBPASSWORD": {
+      "required": true
+    },
+    "DBSCHEMA": {
+      "required": true
+    },
+    "DBUSERNAME": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "cleardb"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/java"
+    }
+  ]
+}
